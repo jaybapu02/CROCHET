@@ -70,73 +70,82 @@ export default function Navbar() {
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "border-b border-line/80 bg-cream/85 backdrop-blur-xl"
-          : "border-b border-transparent bg-cream/40 backdrop-blur-md"
-      }`}
-    >
-      <div className="container-site flex h-[72px] items-center justify-between gap-6 md:h-20">
-        <Link
-          href="/"
-          className="group flex items-center gap-3"
-          aria-label={`${siteConfig.name} — home`}
-        >
-          <BrandMark className="transition-transform duration-500 group-hover:rotate-45" />
-          <span className="flex flex-col leading-none">
-            <span className="font-display text-lg font-semibold tracking-tight text-ink sm:text-xl">
-              {siteConfig.name}
-            </span>
-            <span className="mt-1 hidden text-[0.68rem] uppercase tracking-[0.2em] text-faint sm:block">
-              {siteConfig.tagline}
-            </span>
-          </span>
-        </Link>
-
-        <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              aria-current={isActive(link.href) ? "page" : undefined}
-              className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300 ${
-                isActive(link.href) ? "text-rose-deep" : "text-ink/80 hover:text-ink"
-              }`}
-            >
-              {link.label}
-              <span
-                className={`absolute inset-x-4 -bottom-0.5 h-px origin-left bg-rose-deep transition-transform duration-300 ${
-                  isActive(link.href) ? "scale-x-100" : "scale-x-0"
-                }`}
-              />
-            </Link>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-2">
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? "border-b border-line/80 bg-cream/85 backdrop-blur-xl"
+            : "border-b border-transparent bg-cream/40 backdrop-blur-md"
+        }`}
+      >
+        <div className="container-site flex h-[72px] items-center justify-between gap-6 md:h-20">
           <Link
-            href={siteConfig.links.order}
-            className="btn btn-primary btn-sm btn-hide-below-sm hidden sm:inline-flex"
+            href="/"
+            className="group flex items-center gap-3"
+            aria-label={`${siteConfig.name} — home`}
           >
-            Order Now
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            <BrandMark className="transition-transform duration-500 group-hover:rotate-45" />
+            <span className="flex flex-col leading-none">
+              <span className="font-display text-lg font-semibold tracking-tight text-ink sm:text-xl">
+                {siteConfig.name}
+              </span>
+              <span className="mt-1 hidden text-[0.68rem] uppercase tracking-[0.2em] text-faint sm:block">
+                {siteConfig.tagline}
+              </span>
+            </span>
           </Link>
 
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
-            className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white/70 text-ink transition-colors hover:border-ink lg:hidden"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-      </div>
+          <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={isActive(link.href) ? "page" : undefined}
+                className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300 ${
+                  isActive(link.href) ? "text-rose-deep" : "text-ink/80 hover:text-ink"
+                }`}
+              >
+                {link.label}
+                <span
+                  className={`absolute inset-x-4 -bottom-0.5 h-px origin-left bg-rose-deep transition-transform duration-300 ${
+                    isActive(link.href) ? "scale-x-100" : "scale-x-0"
+                  }`}
+                />
+              </Link>
+            ))}
+          </nav>
 
-      {/* Mobile drawer */}
+          <div className="flex items-center gap-2">
+            <Link
+              href={siteConfig.links.order}
+              className="btn btn-primary btn-sm btn-hide-below-sm hidden sm:inline-flex"
+            >
+              Order Now
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? "Close menu" : "Open menu"}
+              className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white/70 text-ink transition-colors hover:border-ink lg:hidden"
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/*
+        Mobile drawer — deliberately rendered OUTSIDE <header>. The header carries
+        `backdrop-blur-*` (backdrop-filter), which makes it the containing block
+        for fixed-position descendants: while this overlay was a child of the
+        header, `fixed inset-0` resolved to the 72px navbar box instead of the
+        viewport, so the panel and its backdrop collapsed and the links were
+        clipped/covered by the page underneath.
+      */}
       <div id="mobile-menu" className="lg:hidden">
         <div
           role="dialog"
@@ -213,6 +222,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }
