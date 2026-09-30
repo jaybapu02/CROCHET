@@ -42,7 +42,7 @@ export const siteConfig = {
   /** Pretty-printed version of the number, for showing it as text. */
   whatsappDisplay: "+91 78530 81934",
 
-  email: "hello@stitchandbloom.in",
+  email: "priyankadas9729@gmail.com",
 
   /** Official Instagram profile (clean URL — no tracking parameters). */
   instagram: "https://www.instagram.com/loveloop144/",
