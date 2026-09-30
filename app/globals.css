@@ -1,0 +1,423 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   Design tokens — premium handmade boutique palette
+----------------------------------------------------------------*/
+@theme {
+  --color-cream: #fbf7f1;
+  --color-shell: #f5ede2;
+  --color-blush: #f6e4de;
+  --color-clay: #efd8ce;
+  --color-rose: #c0857d;
+  --color-rose-deep: #a9615c;
+  --color-wine: #8c4f4c;
+  --color-sage: #8a9c7e;
+  --color-sage-deep: #6d7f61;
+  --color-mustard: #d9a441;
+  --color-ink: #2e2723;
+  --color-muted: #6e6058;
+  --color-faint: #8d7f74;
+  --color-line: #e8ddd0;
+  --color-card: #fffdfa;
+
+  --font-display: var(--font-fraunces), "Georgia", "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --shadow-soft: 0 1px 2px rgba(60, 45, 36, 0.04), 0 12px 30px -18px rgba(60, 45, 36, 0.35);
+  --shadow-lift: 0 2px 6px rgba(60, 45, 36, 0.06), 0 30px 50px -28px rgba(60, 45, 36, 0.45);
+
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-float-slow: float 14s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(3deg);
+  }
+}
+
+/* ---------------------------------------------------------------
+   Base
+----------------------------------------------------------------*/
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--color-clay);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-rose-deep);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Layout helpers
+----------------------------------------------------------------*/
+.container-site {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 76rem;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .container-site {
+    padding-inline: 2rem;
+  }
+}
+
+.section {
+  padding-block: 4.5rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: 6rem;
+  }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-rose-deep);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.lede {
+  color: var(--color-muted);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  max-width: 42rem;
+}
+
+/* ---------------------------------------------------------------
+   Buttons
+----------------------------------------------------------------*/
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border-radius: 999px;
+  font-weight: 550;
+  font-size: 0.95rem;
+  line-height: 1;
+  padding: 1rem 1.65rem;
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.btn-primary {
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-wine);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+.btn-rose {
+  background-color: var(--color-rose-deep);
+  color: #fff;
+}
+
+.btn-rose:hover {
+  background-color: var(--color-wine);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-line);
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-ink);
+  background-color: rgba(46, 39, 35, 0.04);
+  transform: translateY(-2px);
+}
+
+.btn-light {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(6px);
+}
+
+.btn-light:hover {
+  background-color: rgba(255, 255, 255, 0.26);
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  padding: 0.7rem 1.15rem;
+  font-size: 0.875rem;
+}
+
+/* Tighter CTA pair for the narrow 4-up cards in the home "Best sellers" row —
+   keeps Details + Order Now inside the card padding. */
+.btn-tight {
+  padding: 0.6rem 0.75rem;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Tailwind utilities live in @layer utilities, so the unlayered .btn display
+   above always beats a `hidden` utility — this modifier is kept here, in source
+   order after .btn, for buttons that must disappear below the sm breakpoint
+   (e.g. the header "Order Now" so the hamburger never gets pushed off-screen). */
+@media (max-width: 639.98px) {
+  .btn-hide-below-sm {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Surfaces
+----------------------------------------------------------------*/
+.card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lift);
+  border-color: #ddcfc0;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-line);
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  transition: all 0.22s ease;
+  cursor: pointer;
+}
+
+.pill:hover {
+  border-color: var(--color-rose);
+  color: var(--color-rose-deep);
+}
+
+.pill[data-active="true"] {
+  background-color: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-cream);
+}
+
+.field-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-ink);
+  margin-bottom: 0.4rem;
+}
+
+.field {
+  width: 100%;
+  border-radius: 0.85rem;
+  border: 1px solid var(--color-line);
+  background-color: #fff;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.field::placeholder {
+  color: #a99b8f;
+}
+
+.field:hover {
+  border-color: #dccabb;
+}
+
+.field:focus {
+  border-color: var(--color-rose);
+  box-shadow: 0 0 0 4px rgba(192, 133, 125, 0.18);
+  outline: none;
+}
+
+.field[aria-invalid="true"] {
+  border-color: #c2564f;
+  box-shadow: 0 0 0 4px rgba(194, 86, 79, 0.14);
+}
+
+/* Icon-bearing fields. Tailwind utilities live in @layer utilities, so the
+   unlayered .field padding above would always beat a pl- or pr- utility — these
+   modifiers are kept here instead, in source order after .field. */
+.field-icon {
+  padding-left: 2.75rem;
+}
+
+.field-icon-right {
+  padding-right: 2.75rem;
+}
+
+.field-select {
+  padding-left: 2.75rem;
+  padding-right: 2.5rem;
+}
+
+/* The native search clear button would collide with the custom clear button. */
+.field::-webkit-search-cancel-button,
+.field::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.field-error {
+  color: #b14a44;
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+}
+
+/* ---------------------------------------------------------------
+   Scroll reveal (only when JS is available)
+----------------------------------------------------------------*/
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.js [data-reveal="fade"] {
+  transform: none;
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------------------------------------------------------------
+   Extras
+----------------------------------------------------------------*/
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: radial-gradient(rgba(120, 96, 78, 0.14) 1px, transparent 1px);
+  background-size: 4px 4px;
+  mix-blend-mode: multiply;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
