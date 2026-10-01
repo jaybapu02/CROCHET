@@ -211,7 +211,11 @@ export default function Navbar() {
             </nav>
 
             <div className="mt-auto space-y-3 border-t border-line px-6 py-6">
-              <Link href={siteConfig.links.order} className="btn btn-rose btn-block">
+              <Link
+                href={siteConfig.links.order}
+                onClick={() => setOpen(false)}
+                className="btn btn-rose btn-block"
+              >
                 Order Now
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
