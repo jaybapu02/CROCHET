@@ -154,7 +154,7 @@ try {
     ["clothes", 8],
     ["decor", 7],
     ["hair-accessories", 10],
-    ["bags", 4],
+    ["bags", 11],
     ["keychains", 7],
     ["toys", 4],
     ["gifts", 3],
@@ -169,7 +169,7 @@ try {
     ["crochet-chick-cushion", "₹859"],
     ["crochet-sunflower-pot", "₹499 (Big Size)"],
     ["crochet-tulips-in-vase", "₹299"],
-    ["handmade-crochet-tote-bag", "₹1,299"],
+    ["handmade-crochet-tote-bag", "₹800"],
     ["crochet-flower-keychain", "₹150"],
     ["crochet-bunny", "₹1,399"],
   ]) {

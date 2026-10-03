@@ -97,7 +97,7 @@ try {
     ["decor", 7],
     ["hair-accessories", 10],
     ["gifts", 3],
-    ["bags", 4],
+    ["bags", 11],
   ]) {
     check(`${cat} = ${n} images`, byCat[cat] === n, String(byCat[cat]));
   }
@@ -249,7 +249,7 @@ try {
     ["crochet-chick-cushion", "₹859"],
     ["crochet-sunflower-pot", "₹499 (Big Size)"],
     ["crochet-tulips-in-vase", "₹299"],
-    ["handmade-crochet-tote-bag", "₹1,299"],
+    ["handmade-crochet-tote-bag", "₹800"],
     ["rose-daisy-gift-hamper", "₹599"],
     ["crochet-rose-claw-clip", "₹259"],
     ["crochet-daisy-bouquet", "₹449"],
